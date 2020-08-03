@@ -2,7 +2,6 @@ run("Input/Output...", "jpeg=85 gif=-1 file=.csv use_file save_row copy_column")
 
 IMAGE_DIRECTORY_PATH = "/path/to/images/";
 IMAGE_LIST = getFileList(IMAGE_DIRECTORY_PATH);
-HEADERS = newArray("zwarte_prut", "witte_prut");
 CSV_FILE_NAME = "science_stuff";
 FILE_EXTENSION = ".csv";
 RESULT_BLACK = newArray("zwarte_prut");
@@ -27,7 +26,7 @@ for (i = 0; i < IMAGE_LIST.length; i++) {
   run("Convert to Mask", "method=Default background=Dark calculate black");
 
 
-  getHistogram(values, counts, HEADERS.length);
+  getHistogram(values, counts, 2);
   run("Close");
   RESULT_BLACK = appendToArray(RESULT_BLACK, counts[0]);
   RESULT_WHITE = appendToArray(RESULT_WHITE, counts[1]);
