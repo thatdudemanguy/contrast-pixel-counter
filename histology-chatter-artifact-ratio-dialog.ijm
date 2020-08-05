@@ -13,8 +13,6 @@ RESULT_WHITE = "witte_prut";
 // file name title
 FILE_NAME_TITLE = "Filename";
 
-
-
 Dialog.create("Histology chatter artifact ratio");
 Dialog.addString("Image location path", IMAGE_DIRECTORY_PATH);
 Dialog.addString("File name column header", FILE_NAME_TITLE);
@@ -26,6 +24,11 @@ Dialog.show();
 
 // Don't touch
 IMAGE_DIRECTORY_PATH = Dialog.getString();
+
+if(!matches(IMAGE_DIRECTORY_PATH, "/\/$/g")) {
+  IMAGE_DIRECTORY_PATH = IMAGE_DIRECTORY_PATH + '/';
+}
+
 FILE_NAME_TITLE = Dialog.getString();
 RESULT_BLACK = newArray(Dialog.getString());
 RESULT_WHITE = newArray(Dialog.getString());
