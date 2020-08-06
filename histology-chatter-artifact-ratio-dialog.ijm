@@ -12,6 +12,12 @@ RESULT_BLACK = "zwarte_prut";
 RESULT_WHITE = "witte_prut";
 // file name title
 FILE_NAME_TITLE = "Filename";
+// default slider value
+DEFAULT_SLIDER_VALUE = 247;
+// SLIDER LABEL
+SLIDER_LABEL_MIN = "Threshold: min";
+// SLIDER LABEL
+SLIDER_LABEL_MAX = "Threshold: max";
 
 Dialog.create("Histology chatter artifact ratio");
 Dialog.addString("Image location path", IMAGE_DIRECTORY_PATH);
@@ -19,6 +25,8 @@ Dialog.addString("File name column header", FILE_NAME_TITLE);
 Dialog.addString("Name - blacks", RESULT_BLACK);
 Dialog.addString("Name - whites", RESULT_WHITE);
 Dialog.addString("Export filename", CSV_FILE_NAME);
+Dialog.addSlider(SLIDER_LABEL_MIN, 0, 250, 0);
+Dialog.addSlider(SLIDER_LABEL_MAX, 0, 250, DEFAULT_SLIDER_VALUE);
 Dialog.addChoice("Export type:", newArray(".csv"));
 Dialog.show();
 
@@ -33,6 +41,8 @@ FILE_NAME_TITLE = Dialog.getString();
 RESULT_BLACK = newArray(Dialog.getString());
 RESULT_WHITE = newArray(Dialog.getString());
 CSV_FILE_NAME = Dialog.getString();
+THRESHOLD_MIN = Dialog.getNumber();
+THRESHOLD_MAX = Dialog.getNumber();
 FILE_EXTENSION = Dialog.getChoice();
 
 IMAGE_LIST = getFileList(IMAGE_DIRECTORY_PATH);
@@ -55,7 +65,8 @@ for (i = 0; i < IMAGE_LIST.length; i++) {
   run("8-bit");
 
   // define thresholds
-  setAutoThreshold("Default dark");
+  // setAutoThreshold("Default dark");
+  setThreshold(THRESHOLD_MIN, THRESHOLD_MAX);
   setOption("BlackBackground", true);
   run("Convert to Mask", "method=Default background=Dark calculate black");
 
