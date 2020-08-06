@@ -19,6 +19,14 @@ SLIDER_LABEL_MIN = "Threshold: min";
 // SLIDER LABEL
 SLIDER_LABEL_MAX = "Threshold: max";
 
+Dialog.create("Hello there");
+Dialog.addMessage("This macro was created by Robin Van Roy - github.com/thatdudemanguy");
+Dialog.addMessage("To start, please select the first image of your sequence");
+Dialog.show();
+
+path = File.openDialog("Select the first file");
+IMAGE_DIRECTORY_PATH = File.getParent(path);
+
 Dialog.create("Histology chatter artifact ratio");
 Dialog.addString("Image location path", IMAGE_DIRECTORY_PATH);
 Dialog.addString("File name column header", FILE_NAME_TITLE);
